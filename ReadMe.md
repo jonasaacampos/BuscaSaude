@@ -23,3 +23,17 @@ django-admin stratproject buscaSaudeAdmin .
 
 
 ### Create App
+
+- Criar app `python manage startapp buscaSaude`
+- adicionar o app entro da lista dos apps gerenciados pelo admin (`Projeto>settings>settings.py => lista INSTALLED_APPS`)
+- criar o pacote models dentro do app
+- apagar arquivo models.py da raiz do app
+- após criar models, fazer as migrações `python manage makemigrations`
+- consolidar a migração `python manage migrate`
+- Inserir model no arquivo admin.py (`from .models import *` e `admin.site.register(Profile)`)
+
+
+------
+
+- **todo usuario necessita estar em um perfil**
+

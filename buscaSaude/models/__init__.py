@@ -7,7 +7,6 @@ from django.dispatch import receiver
 class Base(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
-    token = models.CharField(max_length=255, null=True, blank=True)
 
     class Meta:
         abstract = True
@@ -19,4 +18,16 @@ PROFILE_TYPE = (
     (3, 'Paciente')
 )
 
+DIAS_DE_ATENDIMENTO = (
+    (1, "2ª a 6ª"),
+    (2, "2ª a sábado"),
+    (3, "Somente com agendamento"),
+    (4, "Teleconsulta e Agendamento Presencial"),
+    (5, "Teleconsulta somente"),
+    (6, "Urgência e Emergência - 24hs"),
+)
+
 from .Profile import Profile
+from .Especialidade import Especialidade
+from .Endereco import Estado, Cidade, Bairro, Endereco
+from .Avaliacao import Avalicao

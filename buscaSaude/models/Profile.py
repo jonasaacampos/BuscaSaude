@@ -6,6 +6,12 @@ class Profile(Base):
     perfil = models.IntegerField(choices=PROFILE_TYPE, default=3)
     data_nascimento = models.DateField(default=None, null=True, blank=True)
 
+    favoritos = models.ManyToManyField(User, blank=True, related_name="favoritos")
+    especialidades = models.ManyToManyField("Especialidade")
+    enderecos = models.ManyToManyField("Endereco")
+
+    token = models.CharField(max_length=255, null=True, blank=True)
+
     def __str__(self):
         return self.user.username
 

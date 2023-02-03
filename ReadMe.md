@@ -41,3 +41,19 @@ django-admin stratproject buscaSaudeAdmin .
 
 - remover o views.py do app
 - criar pacote views dentro do app
+
+```
+request.user.username: nome de usuário.
+request.user.email: e-mail do usuário.
+request.user.first_name: primeiro nome.
+request.user.last_name: último nome.
+request.user.date_joined: data de cadastro.
+request.user.is_active: se está ativo ou inativo.
+request.user.is_staff: se o usuário pode acessar o site do
+administrador.
+request.user.is_superuser: se é um superusuário com acesso
+ao painel admin do Django.
+request.user.last_login: data e hora do último login do usuário.
+request.user.is_authenticated: atributo que informa se um
+usuário está logado ou não.
+```

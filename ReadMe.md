@@ -37,3 +37,7 @@ django-admin stratproject buscaSaudeAdmin .
 
 - **todo usuario necessita estar em um perfil**
 
+### Criando as views
+
+- remover o views.py do app
+- criar pacote views dentro do app

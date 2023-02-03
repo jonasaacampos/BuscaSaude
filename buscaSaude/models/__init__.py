@@ -5,6 +5,7 @@ from django.dispatch import receiver
 
 
 class Base(models.Model):
+    status = models.BooleanField("Ativo?", default=True)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 

@@ -8,4 +8,4 @@ def list_profile_view(request, id=None):
     elif not request.user.is_authenticated:
         id = 0
 
-    return HttpResponse(f"<h1>Usuário de id {id} </h1>")
+    return HttpResponse(f"<h1>Usuário de id {id} </h1><p>Seu último acesso foi {request.user.last_login}</p>")

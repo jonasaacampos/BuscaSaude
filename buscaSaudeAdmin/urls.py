@@ -8,5 +8,6 @@ from django.conf.urls import include
 urlpatterns = [
     path("admin/", admin.site.urls),
     path("", include("buscaSaude.urls.HomeUrls")),
-    path("profile/", include("buscaSaude.urls.ProfileUrls"))
+    path("profile/", include("buscaSaude.urls.ProfileUrls")),
+    path("professional/", include("buscaSaude.urls.ProfessionalsUrls")),
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT) + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

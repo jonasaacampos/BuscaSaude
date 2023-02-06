@@ -1,4 +1,5 @@
 from buscaSaude.models import *
+from django.db.models import Sum, Count
 
 
 class Profile(Base):
@@ -32,3 +33,17 @@ class Profile(Base):
             instance.profile.save()
         except:
             pass
+
+
+    def exibir_avaliacoes(self):
+        from .Avaliacao import Avalicao
+        try:
+            avaliacoes = Avalicao.objects.filter(user__avaliado=self.user).aggregate(Sum('value'), Count('user'))
+            if avaliacoes["user__count"] > 0:
+                avaliacao_media = avaliacoes["value__sum"] / avaliacoes["user__count"]
+                avaliacao_media = round(avaliacao_media, 2)
+                return avaliacao_media
+            return "Sem avaliações"
+        except:
+            pass
+

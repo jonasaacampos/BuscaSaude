@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.db.models import Q
 from django.core.paginator import Paginator
 from buscaSaude.models import Profile
@@ -46,3 +46,44 @@ def list_professional_view(request):
     }
 
     return render(request, template_name="professional/professionals.html", context=context, status=200)
+
+
+def add_favorite_view(request):
+    page = request.POST.get("page")
+    nome = request.POST.get("nome")
+    especialidade = request.POST.get("especialidade")
+    bairro = request.POST.get("bairro")
+    cidade = request.POST.get("cidade")
+    uf = request.POST.get("uf")
+    id = request.POST.get("id")
+
+    try:
+        profile = Profile.objects.filter(user=request.user).fisrt()
+        professional = Profile.objects.filter(user__id=id).first()
+        profile.favoritos.add(professional.user)
+        profile.save()
+        mensagem = "Adicionado à seus profissionais favoritos"
+        _type = "success"
+    except Exception as e:
+        print(f"Erro: {e} ")
+        mensagem = "Não foi possível adiocionar aos favoritos, tente mais tarde"
+        _type = "danger"
+
+    if page:
+        arguments = f"?page={page}"
+    else:
+        arguments = "?oage=1"
+    if nome:
+        arguments += f"&nome={nome}"
+    if especialidade:
+        arguments += f"&especialidade={especialidade}"
+    if bairro:
+        arguments += f"&bairro={bairro}"
+    if cidade:
+        arguments += f"&cidade={cidade}"
+    if uf:
+        arguments += f"&uf={uf}"
+
+    arguments += f"&mensagem={mensagem, _type}"
+
+    return redirect(to=f"/professional/{arguments}")
